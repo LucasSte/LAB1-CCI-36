@@ -7,9 +7,12 @@ class DominoController
     stage = 0;
     angleRate = 500;
     eAngleSum = 0;
+    tAngleSum = 0;
+    sAngleSum = 0;
 
     ePoint = new THREE.Vector3(4.5, 0,0);
     tPoint = new THREE.Vector3(-0.5, 0, 0);
+    sPoint = new THREE.Vector3(-5.5, 0, 0);
     eAxis = new THREE.Vector3(0,0,1);
     q = new THREE.Quaternion();
 
@@ -58,7 +61,68 @@ class DominoController
                 this.eAngleSum += Math.PI / this.angleRate;
                 this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, Math.PI / this.angleRate);
             }
-            //TODO: Terminar o efeito domino. Ler o comentario no fim do arquivo.
+            else
+            {
+                this.angleRate = 500;
+                this.stage = 3;
+            }
+        }
+        else if(this.stage === 3)
+        {
+            if(this.tAngleSum <= 0.608)
+            {
+                this.angleRate -= 10;
+                this.tAngleSum += Math.PI / this.angleRate;
+                this.performLetterRotationWithQ(word.TGroup, this.eAxis, this.tPoint, Math.PI / this.angleRate);
+                let eAngle = this.getBehindLetterAngle(Math.PI/2 - this.tAngleSum);
+                let eRotation = eAngle - this.eAngleSum;
+                this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, eRotation);
+                this.eAngleSum = eAngle;
+            }
+            else
+            {
+                this.angleRate = 500;
+                this.stage = 4;
+            }
+        }
+        else if(this.stage === 4)
+        {
+            if(this.tAngleSum - this.eAngleSum < 0.0001)
+            {
+                this.angleRate -= 10;
+                this.sAngleSum += Math.PI / this.angleRate;
+                this.performLetterRotationWithQ(word.SGroup, this.eAxis, this.sPoint, Math.PI / this.angleRate);
+                let tAngle = this.getBehindLetterAngle(Math.PI / 2 - this.sAngleSum);
+                let tRotation = tAngle - this.tAngleSum;
+                this.performLetterRotationWithQ(word.TGroup, this.eAxis, this.tPoint, tRotation);
+                this.tAngleSum = tAngle;
+                let eAngle = this.getBehindLetterAngle(Math.PI/2 - this.tAngleSum);
+                let eRotation = eAngle - this.eAngleSum;
+                this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, eRotation);
+                this.eAngleSum = eAngle;
+            }
+            else
+            {
+                this.angleRate += 90;
+                this.stage = 5;
+            }
+        }
+        else if(this.stage === 5)
+        {
+            if(this.sAngleSum - Math.PI / 2 < 0.001)
+            {
+                this.angleRate -= 10;
+                this.sAngleSum += Math.PI / this.angleRate;
+                this.performLetterRotationWithQ(word.SGroup, this.eAxis, this.sPoint, Math.PI / this.angleRate);
+                let tAngle = this.getBehindLetterAngleAfterBottomTouch(Math.PI / 2 - this.sAngleSum);
+                let tRotation = tAngle - this.tAngleSum;
+                this.performLetterRotationWithQ(word.TGroup, this.eAxis, this.tPoint, tRotation);
+                this.tAngleSum = tAngle;
+                let eAngle = this.getBehindLetterAngleAfterBottomTouch(Math.PI/2 - this.tAngleSum);
+                let eRotation = eAngle - this.eAngleSum;
+                this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, eRotation);
+                this.eAngleSum = eAngle;
+            }
         }
     }
 
@@ -74,28 +138,22 @@ class DominoController
     getBehindLetterAngle(beta)
     {
         let alpha = Math.asin((5 - 1 / Math.sin(beta))*Math.sin(Math.PI - beta) / 7 );
-        return beta - alpha;
+        return Math.PI /2 - beta + alpha;
     }
 
     getBehindLetterAngleAfterBottomTouch(beta)
     {
         let a = Math.sqrt(26 - 10*Math.cos(Math.PI/2 - beta));
-        return Math.asin(Math.sin(Math.PI / 2 - beta) / a);
+        return Math.PI /2 - Math.asin(Math.sin(Math.PI / 2 - beta) / a);
+    }
+
+    reset(word)
+    {
+        this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, -this.eAngleSum);
+        this.performLetterRotationWithQ(word.TGroup, this.eAxis, this.tPoint, -this.tAngleSum);
+        this.performLetterRotationWithQ(word.SGroup, this.eAxis, this.sPoint, -this.sAngleSum);
     }
 
 }
 
 export default DominoController;
-
-/*
-A partir do momento em que uma letra bate na outra, o calculo do angulo da anterior muda.
-A minha sugestao é que, depois que o E bater no T, começar a rotacionar o T
-usando quaternion, como eu fiz.
-O angulo do E será funcao do angulo do T (ver foto no Whatsapp).
-Para isso, eu deixei a funcao getBehindLetterAngle pronta.
-Nota que depois de um tempo, a ponta de baixo do T vai determinar o angulo (segunda foto do Whatsap).
-Nesse caso, a funcao eh getBehindLetterAngleAfterBottomTouch.
-
-Ao final da animaçao, precisa resetar as posicoes para o usuario poder mexer.
-
- */

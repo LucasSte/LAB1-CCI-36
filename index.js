@@ -48,6 +48,7 @@ var domino;
 var resetBasic = true;
 var resetFixed = true;
 var resetDomino = true;
+var didDomino = false;
 var dController = new DominoController();
 let animate = function () {
     domino = document.getElementById("domino").checked
@@ -59,6 +60,10 @@ let animate = function () {
     {
         if(resetFixed)
         {
+            if(didDomino)
+            {
+                dController.reset(word);
+            }
             word.resetPosition(scene);
             resetFixed = false;
             resetBasic = true;
@@ -73,7 +78,10 @@ let animate = function () {
     {
         if(resetBasic)
         {
-
+            if(didDomino)
+            {
+                dController.reset(word);
+            }
             word.resetPosition(scene);
             resetBasic = false;
             resetFixed = true;
@@ -94,13 +102,13 @@ let animate = function () {
             resetDomino = false;
             resetFixed = true;
             resetBasic = true;
+            didDomino = true;
         }
         dController.animate(word, sphere);
 
     }
 
-    //TODO: Terminar efeito domino (ver comentarios no arquivo dominocontroller.js)
-    //TODO: Pensar em outra transformacao (2D ou 3D) a partir dos slides do forster (pode fazer as letras se desmontarem depois de cairem, mas acho muito suga)
+    //TODO: Pensar em outra transformacao (2D ou 3D) a partir dos slides do forster (pode fazer as letras se desmontarem depois de cairem)
     //TODO: Justificar posicionamento da camera (usei  orbit controls, que permite mexer com o mouse)
     //TODO: Deixar o codigo funcionando no pc do Forster (sugestao: WebPack)
 
