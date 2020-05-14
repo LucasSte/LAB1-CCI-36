@@ -96,6 +96,6 @@ Para isso, eu deixei a funcao getBehindLetterAngle pronta.
 Nota que depois de um tempo, a ponta de baixo do T vai determinar o angulo (segunda foto do Whatsap).
 Nesse caso, a funcao eh getBehindLetterAngleAfterBottomTouch.
 
-
+Ao final da animaçao, precisa resetar as posicoes para o usuario poder mexer.
 
  */

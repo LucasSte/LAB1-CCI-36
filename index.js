@@ -100,7 +100,7 @@ let animate = function () {
     }
 
     //TODO: Terminar efeito domino (ver comentarios no arquivo dominocontroller.js)
-    //TODO: Pensar em outra transformacao (2D ou 3D) a partir dos slides do forster
+    //TODO: Pensar em outra transformacao (2D ou 3D) a partir dos slides do forster (pode fazer as letras se desmontarem depois de cairem, mas acho muito suga)
     //TODO: Justificar posicionamento da camera (usei  orbit controls, que permite mexer com o mouse)
     //TODO: Deixar o codigo funcionando no pc do Forster (sugestao: WebPack)
 
