@@ -11,32 +11,37 @@
 <canvas width="500" height="500" id="canv">
     <script type=module src="./index.js"></script>
 </canvas>
+<div>
+    <h3>Escolha uma opção de animação.</h3>
+    <input type="radio" id="basic" name="option" value="basic">
+    <label for="basic">Rodar base e letras nos cursores</label>
+    <input type="radio" id="fixed" name="option" value="fixed">
+    <label for="fixed">Rodar base no cursor (letras ficam voltadas a camera)</label>
+    <input type="radio" id="domino" name="option" value="domino">
+    <label for="domino">Efeito domino a partir da bolinha</label>
+</div>
+<br>
 <div style="width: 100%;">
     <div style="width: 150px; float: left">
         <h3>Vbase</h3>
+        <p>Velocidade angular da base</p>
         <input type="range" min="-30" max="30" value="0" id="vBase">
     </div>
     <div style="width: 150px; float: left">
         <h3>VS</h3>
+        <p>Velocidade angular do S</p>
         <input type="range" min="-30" max="30" value="0" id="vS">
     </div>
     <div style="width: 150px; float: left">
         <h3>VT</h3>
+        <p>Velocidade angular do T</p>
         <input type="range" min="-30" max="30" value="0" id="vT">
     </div>
     <div style="width: 150px; float: left">
         <h3>VE</h3>
+        <p>Velocidade angular do E</p>
         <input type="range" min="-30" max="30" value="0" id="vE">
     </div>
-</div>
-<div>
-    <h3>Fixate letters position</h3>
-    <h4>Move only Vbase</h4>
-    <input type="checkbox" id="fixate">
-</div>
-<div>
-    <h3>Derrubar letras</h3>>
-    <input type="checkbox" id="down">
 </div>
 
 </html>

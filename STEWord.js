@@ -85,6 +85,34 @@ class STEWord
         this.steAndBase.add(this.STEGroup);
         this.steAndBase.add(this.baseOne);
     }
+
+    resetPosition(scene) {
+        document.getElementById("vE").value = 0;
+        document.getElementById("vS").value = 0;
+        document.getElementById("vT").value = 0;
+        document.getElementById("vBase").value = 0;
+        this.EGroup.rotation.y = 0;
+        this.SGroup.rotation.y = 0;
+        this.TGroup.rotation.y = 0;
+        this.steAndBase.rotation.y = 0;
+        scene.updateMatrixWorld();
+        var vec = new THREE.Vector3();
+        this.EGroup.getWorldPosition(vec);
+        if(vec.x < 0)
+        {
+            this.steAndBase.rotateY(Math.PI);
+        }
+        this.E2.getWorldPosition(vec);
+        if(vec.x > 4)
+        {
+            this.EGroup.rotateY(Math.PI);
+        }
+        this.S2.getWorldPosition(vec);
+        if(vec.x < -4)
+        {
+            this.SGroup.rotateY(Math.PI);
+        }
+    }
 }
 
 export default STEWord;
