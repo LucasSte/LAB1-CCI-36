@@ -21,12 +21,15 @@ class DominoController
 
     adjustPositions(word)
     {
-        word.steAndBase.rotation.y = 0;
         word.EGroup.rotation.y = Math.PI / 2;
         word.SGroup.rotation.y = Math.PI / 2;
         word.TGroup.rotation.y = Math.PI / 2;
         this.stage = 1;
         this.num = 0;
+        this.angleRate = 500;
+        this.eAngleSum = 0;
+        this.tAngleSum = 0;
+        this.sAngleSum = 0;
     }
 
     nextBallPos(x)

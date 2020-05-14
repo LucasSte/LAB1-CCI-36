@@ -100,13 +100,15 @@ class STEWord
         this.EGroup.getWorldPosition(vec);
         if(vec.x < 0)
         {
-            this.steAndBase.rotateY(Math.PI);
+           this.steAndBase.rotateY(Math.PI);
         }
+        scene.updateMatrixWorld();
         this.E2.getWorldPosition(vec);
         if(vec.x > 4)
         {
             this.EGroup.rotateY(Math.PI);
         }
+        scene.updateMatrixWorld();
         this.S2.getWorldPosition(vec);
         if(vec.x < -4)
         {

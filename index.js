@@ -6,7 +6,7 @@ import DominoController from "./dominoController.js";
 let scene = new THREE.Scene();
 scene.color = new THREE.Color(89, 73, 40);
 scene.fog = new THREE.Fog(0x594928, 0.1, 80);
-let camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 let renderer = new THREE.WebGLRenderer({canvas: document.getElementById("canv")});
 renderer.setClearColor(0x594928, 1);
@@ -29,9 +29,15 @@ let light = new THREE.PointLight(0xffffff);
 light.position.set(0, 20, 10);
 scene.add(light);
 
-camera.position.y = 10;
-camera.position.x = 5;
 let controls = new OrbitControls(camera, renderer.domElement);
+
+camera.position.y = 20;
+camera.position.x = 5;
+camera.position.z = 30;
+camera.rotateX(Math.PI / 3);
+camera.rotateY(-Math.PI / 2);
+
+controls.update();
 
 let sphereGeometry = new THREE.SphereGeometry(1);
 let sphereMaterial = new THREE.MeshBasicMaterial({color: 0x6d6d6d});
@@ -63,6 +69,7 @@ let animate = function () {
             if(didDomino)
             {
                 dController.reset(word);
+                didDomino = false;
             }
             word.resetPosition(scene);
             resetFixed = false;
@@ -81,17 +88,17 @@ let animate = function () {
             if(didDomino)
             {
                 dController.reset(word);
+                didDomino = false;
             }
             word.resetPosition(scene);
             resetBasic = false;
             resetFixed = true;
-            resetDomino = false;
+            resetDomino = true;
         }
         word.EGroup.rotateY(parseFloat(document.getElementById("vE").value)*0.2*Math.PI/180);
         word.SGroup.rotateY(parseFloat(document.getElementById("vS").value)*0.2*Math.PI/180);
         word.TGroup.rotateY(parseFloat(document.getElementById("vT").value)*0.2*Math.PI/180);
         word.steAndBase.rotateY(baseRotation);
-        resetFixed = true;
     }
     else if(domino)
     {
