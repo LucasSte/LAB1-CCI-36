@@ -57,9 +57,9 @@ var resetDomino = true;
 var didDomino = false;
 var dController = new DominoController();
 let animate = function () {
-    domino = document.getElementById("domino").checked
-    fixed = document.getElementById("fixed").checked
-    basic = document.getElementById("basic").checked
+    domino = document.getElementById("domino").checked;
+    fixed = document.getElementById("fixed").checked;
+    basic = document.getElementById("basic").checked;
 
     baseRotation = parseFloat(document.getElementById("vBase").value)*0.2*Math.PI/180;
     if(fixed)
