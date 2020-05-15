@@ -6,7 +6,9 @@ import DominoController from "./dominoController.js";
 let scene = new THREE.Scene();
 scene.color = new THREE.Color(89, 73, 40);
 scene.fog = new THREE.Fog(0x594928, 0.1, 80);
-let camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+let width = 600;
+let height = 600;
+let camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
 
 let renderer = new THREE.WebGLRenderer({canvas: document.getElementById("canv")});
 renderer.setClearColor(0x594928, 1);
@@ -31,11 +33,9 @@ scene.add(light);
 
 let controls = new OrbitControls(camera, renderer.domElement);
 
-camera.position.y = 20;
-camera.position.x = 5;
-camera.position.z = 30;
-camera.rotateX(Math.PI / 3);
-camera.rotateY(-Math.PI / 2);
+camera.position.y = 10;
+camera.position.x = 0;
+camera.position.z = 35;
 
 controls.update();
 

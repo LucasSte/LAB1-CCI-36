@@ -33,7 +33,7 @@ class STEWord
     TGroup = new THREE.Group();
     EGroup = new THREE.Group();
     STEGroup = new THREE.Group();
-    baseGroup = new THREE.Group();
+    //baseGroup = new THREE.Group();
     steAndBase = new THREE.Group();
 
     constructor() {
