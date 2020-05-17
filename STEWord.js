@@ -37,7 +37,7 @@ class STEWord
     steAndBase = new THREE.Group();
 
     constructor() {
-        this.resetLetters();
+        this.resetLettersPieces();
 
         this.baseOne.position.y = 1.5;
         this.baseTwo.position.y = 0.5;
@@ -49,7 +49,6 @@ class STEWord
         this.SGroup.add(this.S3);
         this.SGroup.add(this.S4);
         this.SGroup.add(this.S5);
-        this.SGroup.position.x = -5;
 
         this.TGroup.add(this.T1);
         this.TGroup.add(this.T2);
@@ -59,18 +58,18 @@ class STEWord
         this.EGroup.add(this.E3);
         this.EGroup.add(this.E4);
         this.EGroup.add(this.E5);
-        this.EGroup.position.x = 5;
 
         this.STEGroup.add(this.SGroup);
         this.STEGroup.add(this.TGroup);
         this.STEGroup.add(this.EGroup);
-        this.STEGroup.position.y = 2;
 
         //this.baseGroup.add(this.baseOne);
         //this.baseGroup.add(this.baseTwo);
 
         this.steAndBase.add(this.STEGroup);
         this.steAndBase.add(this.baseOne);
+
+        this.resetLettersGroups();
     }
 
     resetPosition(scene) {
@@ -103,7 +102,7 @@ class STEWord
         }
     }
 
-    resetLetters(){
+    resetLettersPieces(){
         this.S1.position.set(0, 0.5, 0);
         this.S2.position.set(1.5, 2, 0);
         this.S3.position.set(0, 3.5, 0);
@@ -131,6 +130,17 @@ class STEWord
         this.E4.rotation.set(0, 0, 0);
         this.E5.rotation.set(0, 0, 0);
     }
+
+    resetLettersGroups()
+    {
+        this.SGroup.position.set(-5, 0, 0);
+        this.TGroup.position.set(0, 0, 0);
+        this.EGroup.position.set(5, 0, 0);
+        this.STEGroup.position.set(0, 2, 0);
+        this.STEGroup.position.y = 2;
+
+    }
+
 }
 
 export default STEWord;
