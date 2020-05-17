@@ -37,20 +37,7 @@ class STEWord
     steAndBase = new THREE.Group();
 
     constructor() {
-        this.S1.position.set(0, 0.5, 0);
-        this.S2.position.set(1.5, 2, 0);
-        this.S3.position.set(0, 3.5, 0);
-        this.S4.position.set(-1.5, 5, 0);
-        this.S5.position.set(0, 6.5, 0);
-
-        this.T1.position.set(0, 3, 0);
-        this.T2.position.set(0, 6.5, 0);
-
-        this.E1.position.set(0, 0.5, 0);
-        this.E2.position.set(-1.5, 2, 0);
-        this.E3.position.set(0, 3.5, 0);
-        this.E4.position.set(-1.5, 5, 0);
-        this.E5.position.set(0, 6.5, 0);
+        this.resetLetters();
 
         this.baseOne.position.y = 1.5;
         this.baseTwo.position.y = 0.5;
@@ -114,6 +101,35 @@ class STEWord
         {
             this.SGroup.rotateY(Math.PI);
         }
+    }
+
+    resetLetters(){
+        this.S1.position.set(0, 0.5, 0);
+        this.S2.position.set(1.5, 2, 0);
+        this.S3.position.set(0, 3.5, 0);
+        this.S4.position.set(-1.5, 5, 0);
+        this.S5.position.set(0, 6.5, 0);
+        this.S1.rotation.set(0, 0, 0);
+        this.S2.rotation.set(0, 0, 0);
+        this.S3.rotation.set(0, 0, 0);
+        this.S4.rotation.set(0, 0, 0);
+        this.S5.rotation.set(0, 0, 0);
+
+        this.T1.position.set(0, 3, 0);
+        this.T2.position.set(0, 6.5, 0);
+        this.T1.rotation.set(0, 0, 0);
+        this.T2.rotation.set(0, 0, 0);
+
+        this.E1.position.set(0, 0.5, 0);
+        this.E2.position.set(-1.5, 2, 0);
+        this.E3.position.set(0, 3.5, 0);
+        this.E4.position.set(-1.5, 5, 0);
+        this.E5.position.set(0, 6.5, 0);
+        this.E1.rotation.set(0, 0, 0);
+        this.E2.rotation.set(0, 0, 0);
+        this.E3.rotation.set(0, 0, 0);
+        this.E4.rotation.set(0, 0, 0);
+        this.E5.rotation.set(0, 0, 0);
     }
 }
 
