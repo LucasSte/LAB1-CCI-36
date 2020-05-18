@@ -8,13 +8,13 @@ scene.color = new THREE.Color(89, 73, 40);
 scene.fog = new THREE.Fog(0x594928, 0.1, 80);
 let width = 600;
 let height = 600;
-let camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+let camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 200);
 
 let renderer = new THREE.WebGLRenderer({canvas: document.getElementById("canv")});
 renderer.setClearColor(0x594928, 1);
 document.body.appendChild(renderer.domElement);
 
-let planeGeometry = new THREE.PlaneBufferGeometry(800, 800, 8, 8);
+let planeGeometry = new THREE.PlaneBufferGeometry(200, 200, 8, 8);
 let material = new THREE.MeshBasicMaterial({color: 0xfee896, side : THREE.DoubleSide});
 let plane = new THREE.Mesh(planeGeometry, material);
 plane.rotateX(- Math.PI / 2);
