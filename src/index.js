@@ -1,5 +1,5 @@
-import * as THREE from "../three.js/build/three.module.js";
-import {OrbitControls} from "../three.js/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "./three.module.js";
+import {OrbitControls} from "./OrbitControls.js";
 import STEWord from "./STEWord.js";
 import DominoController from "./dominoController.js";
 
