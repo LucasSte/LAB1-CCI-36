@@ -25,9 +25,9 @@ class DominoController
 
     adjustPositions(word)
     {
-        word.EGroup.rotation.y = Math.PI / 2;
-        word.SGroup.rotation.y = Math.PI / 2;
-        word.TGroup.rotation.y = Math.PI / 2;
+        //word.EGroup.rotation.y = Math.PI / 2;
+        //word.SGroup.rotation.y = Math.PI / 2;
+        //word.TGroup.rotation.y = Math.PI / 2;
         this.stage = 0;
         this.num = 0;
         this.angleRate = 500;
@@ -46,7 +46,7 @@ class DominoController
                 word.EGroup.rotateY(Math.PI/100);
                 word.TGroup.rotateY(Math.PI/100);
                 word.SGroup.rotateY(Math.PI/100);
-                if(this.tAngleSum - Math.PI/2 < 0.001)
+                if(Math.abs(this.tAngleSum - Math.PI/2) < 0.001)
                 {
                     this.stage = 1;
                     this.tAngleSum = 0;
