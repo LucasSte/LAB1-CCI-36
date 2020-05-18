@@ -28,7 +28,7 @@ class DominoController
         word.EGroup.rotation.y = Math.PI / 2;
         word.SGroup.rotation.y = Math.PI / 2;
         word.TGroup.rotation.y = Math.PI / 2;
-        this.stage = 1;
+        this.stage = 0;
         this.num = 0;
         this.angleRate = 500;
         this.eAngleSum = 0;
@@ -38,15 +38,21 @@ class DominoController
         this.velocityY = 60*0.09*28/289;
     }
 
-    nextBallPosY(posX)
-    {
-        console.log(posX);
-        return 17/2 - 30/289*Math.pow(posX - 13/2, 2);
-    }
-
     animate(word, sphere)
     {
         switch (this.stage) {
+            case 0:
+                this.tAngleSum += Math.PI/100;
+                word.EGroup.rotateY(Math.PI/100);
+                word.TGroup.rotateY(Math.PI/100);
+                word.SGroup.rotateY(Math.PI/100);
+                if(this.tAngleSum - Math.PI/2 < 0.001)
+                {
+                    this.stage = 1;
+                    this.tAngleSum = 0;
+                }
+                break;
+
             case 1:
                 sphere.position.x -= 0.3;
                 // sphere.position.y = this.nextBallPosY(sphere.position.x);
