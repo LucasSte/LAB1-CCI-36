@@ -223,7 +223,7 @@ class DominoController
         this.explodeLetterPiece(word.E2, 8, angle)
         this.explodeLetterPiece(word.E3, 7, angle)
         this.explodeLetterPiece(word.E4, 9, angle)
-        this.explodeLetterPiece(word.E5, 18, angle)
+        this.explodeLetterPiece(word.E5, -1, angle)
     }
 
     pseudoRandom(seed, lower, upper) // JS doesn't have pseudo-number with seeds natively. The code below is enough to our proposes
