@@ -9,8 +9,9 @@ class DominoController
     eAngleSum = 0;
     tAngleSum = 0;
     sAngleSum = 0;
-    peacesAngleSum = 0;
-    explosionRate = 10;
+    piecesAngleSum = 0;
+    explosionRate = 20;
+    // explosionRate = 100;
 
     ePoint = new THREE.Vector3(4.5, 0,0);
     tPoint = new THREE.Vector3(-0.5, 0, 0);
@@ -32,7 +33,7 @@ class DominoController
         this.eAngleSum = 0;
         this.tAngleSum = 0;
         this.sAngleSum = 0;
-        this.peacesAngleSum = 0;
+        this.piecesAngleSum = 0;
     }
 
     nextBallPosY(posX)
@@ -122,7 +123,7 @@ class DominoController
                     this.eAngleSum = eAngle;
 
                     this.explodeWord(word, Math.PI/this.explosionRate)
-                    this.peacesAngleSum += Math.PI/this.explosionRate;
+                    this.piecesAngleSum += Math.PI/this.explosionRate;
                 }
                 else
                 {
@@ -146,11 +147,10 @@ class DominoController
                     word.EGroup.position.y -= 0.1;
                     // TODO: makes a physics fall
                 }
-                if(this.peacesAngleSum < 2*Math.PI)
+                if(this.piecesAngleSum < Math.PI)
                 {
                     this.explodeWord(word, Math.PI/this.explosionRate)
-                    this.peacesAngleSum += Math.PI/this.explosionRate;
-                    console.log(this.peacesAngleSum);
+                    this.piecesAngleSum += Math.PI/this.explosionRate;
                 }
                 break;
         }
@@ -190,20 +190,13 @@ class DominoController
     explodeLetterPiece(piece, seed, angle)
     {
         seed = seed*10;
-        piece.position.x += this.pseudoRandom(seed, 0.25, 0.4);
+        piece.position.x += this.pseudoRandom(seed, 0.26, 0.3);
         piece.position.y += this.pseudoRandom(seed+5, 0.1, 0.2);
 
-        // piece.rotateX(angle)
-        piece.rotateY(angle)
-        // piece.rotateZ(angle)
+        piece.rotateX(angle);
 
-        // TODO: makes a random axis rotation
-        // let axis1 = new THREE.Vector3(
-        //     this.pseudoRandom(seed),
-        //     this.pseudoRandom(seed+1),
-        //     this.pseudoRandom(seed+2));
-        //
-        // piece.rotateOnWorldAxis(axis1, angle);
+        let axisZ = new THREE.Vector3(0, 0, 1);
+        piece.rotateOnWorldAxis(axisZ, angle*this.pseudoRandom(seed, 0, 1));
 
     }
 
@@ -213,21 +206,21 @@ class DominoController
         this.explodeLetterPiece(word.S2, 2, angle)
         this.explodeLetterPiece(word.S3, 3, angle)
         this.explodeLetterPiece(word.S4, 4, angle)
-        this.explodeLetterPiece(word.S5, 5, angle)
+        this.explodeLetterPiece(word.S5, 6, angle)
 
-        this.explodeLetterPiece(word.T1, 6, angle)
-        this.explodeLetterPiece(word.T2, 7, angle)
+        this.explodeLetterPiece(word.T1, 10, angle)
+        this.explodeLetterPiece(word.T2, 12, angle)
 
-        this.explodeLetterPiece(word.E1, 8, angle)
-        this.explodeLetterPiece(word.E2, 9, angle)
-        this.explodeLetterPiece(word.E3, 10, angle)
-        this.explodeLetterPiece(word.E4, 11, angle)
-        this.explodeLetterPiece(word.E5, 12, angle)
+        this.explodeLetterPiece(word.E1, 5, angle)
+        this.explodeLetterPiece(word.E2, 8, angle)
+        this.explodeLetterPiece(word.E3, 7, angle)
+        this.explodeLetterPiece(word.E4, 9, angle)
+        this.explodeLetterPiece(word.E5, 18, angle)
     }
 
     pseudoRandom(seed, lower, upper) // JS doesn't have pseudo-number with seeds natively. The code below is enough to our proposes
     {
-        let x = Math.sin(seed + 0.5) * (seed + 23);
+        let x = Math.sin(seed*10000 + 0.5) * (seed + 23);
         let sign = Math.sign(x);
         x = x - Math.floor(x); // 0 <= x <= 1
         return ((upper-lower)*x + lower)*sign; // lower <= abs(x) <= upper
