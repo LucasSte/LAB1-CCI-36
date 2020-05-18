@@ -186,13 +186,15 @@ class DominoController
         return Math.PI /2 - Math.asin(Math.sin(Math.PI / 2 - beta) / a);
     }
 
-    reset(word)
+    reset(word, sphere)
     {
         this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, -this.eAngleSum);
         this.performLetterRotationWithQ(word.TGroup, this.eAxis, this.tPoint, -this.tAngleSum);
         this.performLetterRotationWithQ(word.SGroup, this.eAxis, this.sPoint, -this.sAngleSum);
         word.resetLettersPieces();
         word.resetLettersGroups();
+        sphere.position.x = 15;
+        sphere.position.y = 1
     }
 
     explodeLetterPiece(piece, seed, angle)

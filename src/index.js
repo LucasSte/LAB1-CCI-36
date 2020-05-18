@@ -68,7 +68,7 @@ let animate = function () {
         {
             if(didDomino)
             {
-                dController.reset(word);
+                dController.reset(word, sphere);
                 didDomino = false;
             }
             word.resetPosition(scene);
@@ -87,7 +87,7 @@ let animate = function () {
         {
             if(didDomino)
             {
-                dController.reset(word);
+                dController.reset(word, sphere);
                 didDomino = false;
             }
             word.resetPosition(scene);
