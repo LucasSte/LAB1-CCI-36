@@ -210,20 +210,20 @@ class DominoController
 
     explodeWord(word, angle)
     {
-        this.explodeLetterPiece(word.S1, 1, angle)
-        this.explodeLetterPiece(word.S2, 2, angle)
-        this.explodeLetterPiece(word.S3, 3, angle)
-        this.explodeLetterPiece(word.S4, 4, angle)
-        this.explodeLetterPiece(word.S5, 6, angle)
+        this.explodeLetterPiece(word.S1, 1, angle);
+        this.explodeLetterPiece(word.S2, 2, angle);
+        this.explodeLetterPiece(word.S3, 3, angle);
+        this.explodeLetterPiece(word.S4, 4, angle);
+        this.explodeLetterPiece(word.S5, 6, angle);
 
-        this.explodeLetterPiece(word.T1, 10, angle)
-        this.explodeLetterPiece(word.T2, 12, angle)
+        this.explodeLetterPiece(word.T1, 10, angle);
+        this.explodeLetterPiece(word.T2, 12, angle);
 
-        this.explodeLetterPiece(word.E1, 5, angle)
-        this.explodeLetterPiece(word.E2, 8, angle)
-        this.explodeLetterPiece(word.E3, 7, angle)
-        this.explodeLetterPiece(word.E4, 9, angle)
-        this.explodeLetterPiece(word.E5, -1, angle)
+        this.explodeLetterPiece(word.E1, 5, angle);
+        this.explodeLetterPiece(word.E2, 8, angle);
+        this.explodeLetterPiece(word.E3, 7, angle);
+        this.explodeLetterPiece(word.E4, 9, angle);
+        this.explodeLetterPiece(word.E5, -1, angle);
     }
 
     pseudoRandom(seed, lower, upper) // JS doesn't have pseudo-number with seeds natively. The code below is enough to our proposes
