@@ -11,7 +11,8 @@ class DominoController
     sAngleSum = 0;
     piecesAngleSum = 0;
     explosionRate = 20;
-    // explosionRate = 100;
+    gravity = 60*0.09/289;
+    velocityY = 60*0.09*28/289;
 
     ePoint = new THREE.Vector3(4.5, 0,0);
     tPoint = new THREE.Vector3(-0.5, 0, 0);
@@ -34,10 +35,12 @@ class DominoController
         this.tAngleSum = 0;
         this.sAngleSum = 0;
         this.piecesAngleSum = 0;
+        this.velocityY = 60*0.09*28/289;
     }
 
     nextBallPosY(posX)
     {
+        console.log(posX);
         return 17/2 - 30/289*Math.pow(posX - 13/2, 2);
     }
 
@@ -46,15 +49,19 @@ class DominoController
         switch (this.stage) {
             case 1:
                 sphere.position.x -= 0.3;
-                sphere.position.y = this.nextBallPosY(sphere.position.x);
+                // sphere.position.y = this.nextBallPosY(sphere.position.x);
+                sphere.position.y += this.velocityY;
+                this.velocityY -= this.gravity;
                 if(sphere.position.x <= 6.5)
                     this.stage = 2;
                 break;
             case 2:
-                if(sphere.position.x <= 15)
+                if(sphere.position.y >= 1)
                 {
                     sphere.position.x += 0.2;
-                    sphere.position.y = this.nextBallPosY(sphere.position.x);
+                    // sphere.position.y = this.nextBallPosY(sphere.position.x);
+                    sphere.position.y += this.velocityY;
+                    this.velocityY -= this.gravity;
                 }
                 //When one letter is touching another (like this |\), 0.608 is the angle (in radians) between \ and the vertical.
                 if(this.eAngleSum <= 0.608)
@@ -129,6 +136,7 @@ class DominoController
                 {
                     this.angleRate = 500;
                     this.stage = 6;
+                    this.velocityY = 0;
                 }
                 break;
             case 6:
@@ -140,12 +148,12 @@ class DominoController
                     this.eAngleSum += Math.PI / this.angleRate;
                     this.performLetterRotationWithQ(word.EGroup, this.eAxis, this.ePoint, Math.PI / this.angleRate);
                 }
-                if(word.SGroup.position.y > -1.5)
+                if(word.SGroup.position.y + 1.5 > 0.1)
                 {
-                    word.SGroup.position.y -= 0.1;
-                    word.TGroup.position.y -= 0.1;
-                    word.EGroup.position.y -= 0.1;
-                    // TODO: makes a physics fall
+                    word.SGroup.position.y += this.velocityY;
+                    word.TGroup.position.y += this.velocityY;
+                    word.EGroup.position.y += this.velocityY;
+                    this.velocityY -=this.gravity
                 }
                 if(this.piecesAngleSum < Math.PI)
                 {
