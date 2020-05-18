@@ -1,5 +1,5 @@
-import * as THREE from "./three.js/build/three.module.js";
-import {OrbitControls} from "./three.js/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "../three.js/build/three.module.js";
+import {OrbitControls} from "../three.js/examples/jsm/controls/OrbitControls.js";
 import STEWord from "./STEWord.js";
 import DominoController from "./dominoController.js";
 
@@ -115,9 +115,6 @@ let animate = function () {
 
     }
 
-    //TODO: Pensar em outra transformacao (2D ou 3D) a partir dos slides do forster (pode fazer as letras se desmontarem depois de cairem)
-    //TODO: Justificar posicionamento da camera (usei  orbit controls, que permite mexer com o mouse)
-    //TODO: Deixar o codigo funcionando no pc do Forster (sugestao: WebPack)
 
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
